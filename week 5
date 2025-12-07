@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class FixedDepositNIB {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int choice = 1;
+		System.out.println("Nepal Investment Bank FD Calculator");
+		while (choice == 1) {
+			System.out.println("Enter principal:");
+			double P = sc.nextDouble();
+			if (P < 1000) {
+				System.out.println("Minimum 1000");
+				continue;
+			}
+			System.out.println("Enter annual rate:");
+			double annualRate = sc.nextDouble();
+			if (annualRate < 8 || annualRate > 12) {
+				System.out.println("Rate must be 8 to 12");
+				continue;
+			}
+			System.out.println("Enter years:");
+			int years = sc.nextInt();
+			if (years < 1 || years > 5) {
+				System.out.println("Years 1 to 5 only");
+				continue;
+			}
+			double monthlyRate = annualRate / 12 / 100;
+			int months = years * 12;
+			double A = P * Math.pow(1 + monthlyRate, months);
+			double fee = A * 0.005;
+			double finalAmount = A - fee;
+			System.out.println("Principal: " + P);
+			System.out.println("Rate: " + annualRate);
+			System.out.println("Years: " + years);
+			System.out.println("Before fee: " + A);
+			System.out.println("Fee: " + fee);
+			System.out.println("Final: " + finalAmount);
+			System.out.println("Again? press 1");
+			choice = sc.nextInt();
+		}
+		System.out.println("Done");
+	}
+}
